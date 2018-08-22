@@ -1,10 +1,21 @@
 from django.contrib import admin
-from blogpost.models import Blogpost
+from blogpost.models import *
 
 # Register your models here.
 
-class BlogpostAdmin(admin.ModelAdmin):
-    exclude = ['posted']
-    prepopulated_fields = {'slug':('title',)}
+class CategrayAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
-admin.site.register(Blogpost, BlogpostAdmin)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+class BlogAdmin(admin.ModelAdmin):
+    list_display = ('title','category','content','pub')
+
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('blog','name','content','pub')
+
+admin.site.register(Category, CategrayAdmin)
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Blog,BlogAdmin)
+admin.site.register(Comment,CommentAdmin)
